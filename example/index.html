@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+    <style>
+      body {
+        margin: auto;
+        text-align: center;
+      }
+      li {
+        border-radius: 5px;
+        border: 1px solid rgb(80, 80, 80);
+        margin: 10px;
+        padding: 10px 20px;
+        text-align: left;
+      }
+      li.fav {
+        border-color: rgb(69, 184, 101);
+        background-color: rgb(245, 168, 168);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vue Intro</h1>
+
+    <div id="app">
+      <div v-if="showBooks">
+        <ul>
+          <li
+            v-for="book in filteredBooks"
+            @click="toggleFav(book)"
+            :class="{fav: book.isFav}"
+          >
+            <h2>{{book.title}}</h2>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+      <div @click="toggleShowBooks">
+        <button>
+          <span v-if="showBooks">Hide books</span>
+          <span v-else>Show books</span>
+        </button>
+      </div>
+
+      <h3 v-show="showBooks">Books are showing length of {{books.length}}</h3>
+
+      <!-- Attribute binding -->
+      <a :href="url" target="_blank">Visit site</a>
+
+      <div>
+        <p>{{age}}</p>
+        <button v-on:click="age++">Increase</button>
+        <button v-on:click="age--">Decrease</button>
+
+        <div @click="changeTitle($event,'Legend of the seeker')">
+          Change title
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
